@@ -130,24 +130,26 @@ def query(model_resnet, model_rock, model_reg, img, num, predictions, actual):
     return imgIDs, scores, prediction_reg, apk
 
 
-#1st row : top-3 retrieval from same sample, 2nd row : top-3 retrieval from same reservoir, 3rd row : top-3 retrieval from different reservoir, last row: bottom-3
+#1st row : top-3 retrieval from same sample, 2nd row : top-3 retrieval from same reservoir, 3rd row : top-3 retrieval from different reservoir
 def showResults(imgIDs, regs):
-    fig, axs = plt.subplots(4, 3, constrained_layout=True)
+    fig, axs = plt.subplots(3, 3, constrained_layout=True)
 
     query_filename = pathlib.Path(image_paths[imgIDs[0]]).stem
-
-    df_metadata = pd.read_csv(metadata_path)
+    try:
+        df_metadata = pd.read_csv(metadata_path)
+    except:
+        df_metadata = pd.DataFrame(columns=['Image', 'Label', 'Porosity', 'Permeability', 'Pixelsize'])
+        pass
 
     same_sample = []
     same_res = []
     diff_res = []
-    most_diss_res = [imgIDs[-3], imgIDs[-2], imgIDs[-1]]
     abs_rank_sample = []
     abs_rank_res = []
     abs_rank_diff_res = []
-    abs_rank_most_diss_res = [len(imgIDs)-2, len(imgIDs)-1, len(imgIDs)]
 
     sample_query = query_filename[:6]
+    print("sample_query", sample_query)
     res_query = query_filename[:3]
     for i in range(len(imgIDs)):
         if pathlib.Path(image_paths[imgIDs[i]]).stem[:6] == sample_query:
@@ -173,14 +175,15 @@ def showResults(imgIDs, regs):
     diff_res = [x for _,x in sorted(zip(abs_rank_diff_res,diff_res))]
     abs_rank_diff_res = sorted(abs_rank_diff_res)
 
-    list_index = same_sample[0:3] + same_res[0:3] + diff_res[0:3] + most_diss_res # [0,1,2,3,4,5,6,7,8,-3,-2,-1]
-    rank_index = abs_rank_sample[0:3] + abs_rank_res[0:3] + abs_rank_diff_res[0:3] + abs_rank_most_diss_res
+    list_index = same_sample[0:3] + same_res[0:3] + diff_res[0:3] #+ most_diss_res # [0,1,2,3,4,5,6,7,8,-3,-2,-1]
+    rank_index = abs_rank_sample[0:3] + abs_rank_res[0:3] + abs_rank_diff_res[0:3] #+ abs_rank_most_diss_res
     
-    print("list for 4x3 results:", list_index)
-    print("ranking for 4x3 results:", rank_index)
+    print("list for 3x3 results:", list_index)
+    print("ranking for 3x3 results:", rank_index)
 
-    for j in range(0, 4):
+    for j in range(0, 3):
         for k in range(0, 3):
+            print(3*j+k)
             index_image = list_index[3*j+k]
             img = Image.open(image_paths[index_image]).convert('LA')
             axs[j, k].imshow(img)
@@ -191,7 +194,7 @@ def showResults(imgIDs, regs):
             perm = found_microct_df['Permeability'].values
 
             axs[j, k].set_title(
-                "{}\npor:{}, predicted_por:[{:.3f}], \n perm:{}, predicted_perm:[{:.3f}], \n ABS ranking:{}/{}".format(pathlib.Path(image_paths[index_image]).stem, por, regs[index_image][0],
+                "{}\npor:{}, predicted_por:[{:.3f}], \n perm:{}, predicted_perm:[{:.3f}], \n ABS ranking:{}/{}".format(pathlib.Path(image_paths[index_image]).stem[:4], por, regs[index_image][0],
                                                                     perm, np.power(10, 5*regs[index_image][1]), 1+rank_index[3*j + k], len(imgIDs)), pad=-20, fontsize=8)
             
             axs[j, k].axis('off')
@@ -274,8 +277,9 @@ def main_func():
         model_reg.load_state_dict(new_state_dict)
 
         # Test image index from db
-        index_image = 1209
-
+        index_image = 3 # For replicating figure.9 in the paper.
+        #for k in range(len(image_paths)):
+        #    print(k, image_paths[k])
         predictions, predictions_reg = inference(model_resnet, model_rock, model_reg, train_args.test_loader, train_args)
 
         # Query function

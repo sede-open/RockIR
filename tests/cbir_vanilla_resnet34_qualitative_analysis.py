@@ -112,22 +112,23 @@ def query(model_resnet,img, num, predictions, actual):
     return imgIDs, scores, apk
 
 
-#1st row : top-3 retrieval from same sample, 2nd row : top-3 retrieval from same reservoir, 3rd row : top-3 retrieval from different reservoir, last row: bottom-3
+#1st row : top-3 retrieval from same sample, 2nd row : top-3 retrieval from same reservoir, 3rd row : top-3 retrieval from different reservoir
 def showResults(imgIDs):
-    fig, axs = plt.subplots(4, 3, constrained_layout=True)
+    fig, axs = plt.subplots(3, 3, constrained_layout=True)
 
     query_filename = pathlib.Path(image_paths[imgIDs[0]]).stem
-
-    df_metadata = pd.read_csv(metadata_path)
+    try:
+        df_metadata = pd.read_csv(metadata_path)
+    except:
+        df_metadata = pd.DataFrame(columns=['Image', 'Label', 'Porosity', 'Permeability', 'Pixelsize'])
+        pass
 
     same_sample = []
     same_res = []
     diff_res = []
-    most_diss_res = [imgIDs[-3], imgIDs[-2], imgIDs[-1]]
     abs_rank_sample = []
     abs_rank_res = []
     abs_rank_diff_res = []
-    abs_rank_most_diss_res = [len(imgIDs)-2, len(imgIDs)-1, len(imgIDs)]
 
     sample_query = query_filename[:6]
     res_query = query_filename[:3]
@@ -155,13 +156,13 @@ def showResults(imgIDs):
     diff_res = [x for _,x in sorted(zip(abs_rank_diff_res,diff_res))]
     abs_rank_diff_res = sorted(abs_rank_diff_res)
 
-    list_index = same_sample[0:3] + same_res[0:3] + diff_res[0:3] + most_diss_res # [0,1,2,3,4,5,6,7,8,-3,-2,-1]
-    rank_index = abs_rank_sample[0:3] + abs_rank_res[0:3] + abs_rank_diff_res[0:3] + abs_rank_most_diss_res
+    list_index = same_sample[0:3] + same_res[0:3] + diff_res[0:3]  # [0,1,2,3,4,5,6,7,8,-3,-2,-1]
+    rank_index = abs_rank_sample[0:3] + abs_rank_res[0:3] + abs_rank_diff_res[0:3] 
     
-    print("list for 4x3 results:", list_index)
-    print("ranking for 4x3 results:", rank_index)
+    print("list for 3x3 results:", list_index)
+    print("ranking for 3x3 results:", rank_index)
 
-    for j in range(0, 4):
+    for j in range(0, 3):
         for k in range(0, 3):
             index_image = list_index[3*j+k]
             img = Image.open(image_paths[index_image]).convert('LA')
@@ -212,7 +213,7 @@ def main_func():
     predictions  = inference(model_resnet, train_args.test_loader, train_args)
 
     # Test image index from db
-    index_image = 1076
+    index_image = 3
 
     # Query function
     num = len(image_paths)
