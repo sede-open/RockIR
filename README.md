@@ -1,5 +1,5 @@
 # RockIR : Rock Image Retrieval
-This project is to build content-based image retrieval for 2D Micro-CT rock images based on Python.
+This project is to build the double Siamese neural network for content-based image retrieval on 2D Micro-CT rock images.
 
 ## Purpose
 Analogue rock image search of 2D Micro-CT images
@@ -30,7 +30,11 @@ Analogue rock image search of 2D Micro-CT images
 Contact : Myung-Seok(David) Shim (Myung-Seok.Shim@shell.com)
 
 ## Licensing
-If there is anything special about licensing, mention/reference it here. The default copyright notice is in [LICENSE](LICENSE).
+Distributed under the MIT License. See `LICENSE.md` for more information.
 
 ## Contribution
-For support and contributing to the project, refer to [CONTRIBUTING.md](CONTRIBUTING.md).
+It would be great if you could contribute to this project. Any contributions you make are **greatly appreciated**.
+
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
+
