@@ -24,7 +24,7 @@ from src import parser_define
 output_size = 512
 train_args = parser_define.train_args_define()
 db_image_path = train_args.db_path # image_paths should be fixed 
-image_paths = glob(train_args.db_path+'/*.png') # put all imgs in the path into a list
+image_paths = glob(train_args.db_path+'/*') # put all imgs in the path into a list
 metadata_path = train_args.metadata_path # metadata_path
 
 
