@@ -1,8 +1,9 @@
 # RockIR : Rock Image Retrieval
-This project is to build the double Siamese neural network for content-based image retrieval on 2D Micro-CT rock images.
+This repo covers content-based image retrieval for industrial earth material images (here: rock images) to resolve data paucity, “expert knowledge” subjectivity, and uncommon statistical image properties. Since the lower number of data in data sets and generating labels by human experts is too costly and work intensive for rock samples, a data efficient training algorithm was built here.
 
-## Purpose
-Analogue rock image search of 2D Micro-CT images
+To resolve the data paucity issue, pretrained DL models are used in conjunction with “few-shot” transfer learning. For this, a double Siamese neural network (DSNN) is proposed with ResNet-18 as backbone networks. Rather than relying on expert subjectivity of image similarity, the metadata from physical measurements are used for training. In addition to the image based similarity, metadata based similarity is included in the loss function as well as regression term for predicting metadata. The DSNN outperforms Vanilla ResNet-34, Siamese ResNet-18, Siamese ResNet-34 in image retrieval. Also, qualitative performance comparison is made to find how DSNN retrieves similar samples in a database comparing to baseline Vanilla ResNet-34. 
+
+Given its improved performance on retrieval to find similar samples in terms of both image and metadata, the proposed Double Siamese Neural Network can be done in seconds, compared to weeks or months required by approaches using computer simulations or physical experimentation on rock samples. 
 
 ## Getting started
 1. Make sure that you have essential packages to run these codes based on requirements.txt 
@@ -15,7 +16,7 @@ Analogue rock image search of 2D Micro-CT images
     ```sh
     python ./src/main_without_DDP.py --datapath='your_data_path' --metadata_path='your_metadata_path'
     ```
-5. To test gated based network with top-3 retrievals on same sample, same reservoir, different reservoir, and bottom-3
+5. To test gated based network with top-3 retrievals on same sample, same reservoir, and different reservoir.
     ```sh
     python ./tests/cbir_rock18_gated_qualitative_analysis.py --db_path='your_database_path' --metadata_path='your_metadata_path'
     ```
@@ -38,3 +39,10 @@ It would be great if you could contribute to this project. Any contributions you
 If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
 Don't forget to give the project a star! Thanks again!
 
+## Acknowledgments
+We would like to acknowledge 
+
+* Sherin Mirza, Aarthi Thyagarajan and Luud Heck from Shell supporting the OpenSource release on GitHub 
+
+## How to Cite
+To be updated.
