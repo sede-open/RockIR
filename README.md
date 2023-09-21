@@ -45,4 +45,4 @@ We would like to acknowledge
 * Sherin Mirza, Aarthi Thyagarajan and Luud Heck from Shell supporting the OpenSource release on GitHub 
 
 ## How to Cite
-To be updated.
+Myung Seok Shim, Christopher Thiele, Jeremy Vila, Nishank Saxena, Detlef Hohl, Content-based image retrieval for industrial material images with deep learning and encoded physical properties, Data-Centric Engineering, Volume 4, 2023, e21, DOI: [https://doi.org/10.1017/dce.2023.16](https://doi.org/10.1017/dce.2023.16)
