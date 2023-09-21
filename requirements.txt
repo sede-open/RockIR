@@ -1,0 +1,26 @@
+brotlipy @ file:///home/conda/feedstock_root/build_artifacts/brotlipy_1648854175163/work
+cffi @ file:///home/conda/feedstock_root/build_artifacts/cffi_1656782821535/work
+charset-normalizer @ file:///home/conda/feedstock_root/build_artifacts/charset-normalizer_1655906222726/work
+cryptography @ file:///home/conda/feedstock_root/build_artifacts/cryptography_1652967113783/work
+cycler @ file:///home/conda/feedstock_root/build_artifacts/cycler_1635519461629/work
+faiss==1.7.2
+idna @ file:///home/conda/feedstock_root/build_artifacts/idna_1642433548627/work
+kiwisolver @ file:///home/conda/feedstock_root/build_artifacts/kiwisolver_1655141580650/work
+matplotlib @ file:///home/conda/feedstock_root/build_artifacts/matplotlib-base_1594091694890/work
+numpy==1.22.0
+pandas==1.4.3
+Pillow @ file:///home/conda/feedstock_root/build_artifacts/pillow_1657007156214/work
+pycparser @ file:///home/conda/feedstock_root/build_artifacts/pycparser_1636257122734/work
+pyOpenSSL @ file:///home/conda/feedstock_root/build_artifacts/pyopenssl_1643496850550/work
+pyparsing @ file:///home/conda/feedstock_root/build_artifacts/pyparsing_1652235407899/work
+PySocks @ file:///home/conda/feedstock_root/build_artifacts/pysocks_1648857275402/work
+python-dateutil @ file:///home/conda/feedstock_root/build_artifacts/python-dateutil_1626286286081/work
+pytz @ file:///home/conda/feedstock_root/build_artifacts/pytz_1647961439546/work
+requests @ file:///home/conda/feedstock_root/build_artifacts/requests_1656534056640/work
+six @ file:///home/conda/feedstock_root/build_artifacts/six_1620240208055/work
+torch==2.0.1
+torchaudio==2.0.2
+torchvision==0.15.2
+tornado @ file:///home/conda/feedstock_root/build_artifacts/tornado_1656937829196/work
+typing_extensions @ file:///home/conda/feedstock_root/build_artifacts/typing_extensions_1656706066251/work
+urllib3 @ file:///home/conda/feedstock_root/build_artifacts/urllib3_1647489083693/work
