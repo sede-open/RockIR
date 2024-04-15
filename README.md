@@ -7,7 +7,7 @@ Given its improved performance on retrieval to find similar samples in terms of 
 
 ## Getting started
 1. Make sure that you have essential packages to run these codes based on requirements.txt 
-2. Clone ths repo for input images 
+2. Clone this repo for input images 
 3. Run a following command for training a network with 4 gpus.
     ```sh
     python -m torch.distributed.launch --nproc_per_node=4 --master_port=1111 ./src/main_siamese_rock18_gated_ddp.py --datapath='your_data_path' --metadata_path='your_metadata_path'
