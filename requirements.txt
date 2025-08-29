@@ -18,7 +18,7 @@ python-dateutil @ file:///home/conda/feedstock_root/build_artifacts/python-dateu
 pytz @ file:///home/conda/feedstock_root/build_artifacts/pytz_1647961439546/work
 requests @ file:///home/conda/feedstock_root/build_artifacts/requests_1656534056640/work
 six @ file:///home/conda/feedstock_root/build_artifacts/six_1620240208055/work
-torch==2.0.1
+torch==2.8.0
 torchaudio==2.0.2
 torchvision==0.15.2
 tornado @ file:///home/conda/feedstock_root/build_artifacts/tornado_1656937829196/work
